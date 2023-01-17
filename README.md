@@ -26,6 +26,8 @@ I (Sarveswarasarma Pathamanathasarma) am planning to implement a search engine f
 •	Apache Solr for indexing and querying.
 •	Implement wildcard matching, keyword matching, and range searching
 
+### pip install -r requirements.txt
+
 
 
 

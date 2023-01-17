@@ -1,0 +1,183 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="colorlib.com">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
+  <link href="../static/css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="s010">
+    <form action="http://127.0.0.1:5000/search" method="POST">
+      <div class="inner-form">
+        <div class="basic-search">
+          <h1 style="color: white;">New Trending Tamil Songs</h1>
+          <div class="input-field">
+            <input id="search" type="searchQuery" name="searchQuery" placeholder="பாடல் வரியை உள்ளீடுக..." />
+            <div class="icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path
+                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                </path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="advance-search">
+          <span class="desc">ADVANCED SEARCH</span>
+          <div class="row">
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="year">
+                  <option placeholder="" value="">வருடம்</option>
+                  {% for val in details.years %}
+                  <option value={{val}}>{{val}}</option>              
+                  {% endfor %}
+                </select>               
+              </div>                   
+              <center><input type="checkbox" name="yearmust" id="yearmust" class="checkb">              
+            </div>
+                   
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="movie">
+                  <option placeholder="" value="">படம்</option>
+                  {% for val in details.movies %}
+                  <option value={{val}}>{{val}}</option>              
+                  {% endfor %}
+                </select>
+              </div>
+              <center><input type="checkbox" name="moviemust" id="moviemust" class="checkb"></center>
+            </div>
+           
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="composer">
+                  <option placeholder="" value="">இசை</option>
+                  {% for val in details.composers %}
+                  <option value={{val}}>{{val}}</option>              
+                  {% endfor %}
+                </select>
+              </div>
+              <center> <input type="checkbox" name="composermust" id="composermust" class="checkb">   </center>
+            </div>            
+          </div>
+         
+          <div class="row second">
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="lyricist">
+                  <option placeholder="" value="">பாடலாசிரியர்</option>
+                  {% for val in details.lyricists %}
+                  <option value={{val}}>{{val}}</option>              
+                  {% endfor %}
+                </select>
+              </div>
+              <center><input type="checkbox" name="lyricistmust" id="lyricistmust" class="checkb">  </center>
+            </div>
+             
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="singer">
+                  <option placeholder="" value="">பாடகர்</option>
+                  {% for val in details.singers %}
+                  <option value={{val}}>{{val}}</option>              
+                  {% endfor %}
+                </select>
+              </div>
+              <center><input type="checkbox" name="singermust" id="singermust" class="checkb"> </center>    
+            </div>                 
+          </div>
+          <input type="checkbox" name="composermust" id="composermust" class="checkb" disabled> means <b>MUST CHECKING</b>
+          <br/><br/>
+          <div class="row third">
+            <div class="input-field">
+              <div class="result-count">
+                <span>  
+                  {% if init %}
+                  Welcome      
+                  {% elif num_results > 0 %} {{num_results}} results were found for <strong>{{query}}</strong>
+                  <br/><b> Scroll DOWN -></b>
+                  {% else %} No result found ! {% endif %}</span>
+              </div>
+              <div class="group-btn">
+                <button class="btn-delete" id="delete" type="reset">RESET</button>
+                <button class="btn-search" type="submit">SEARCH</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  <div class="results">
+    {% if hits %}
+    <hgroup class="mb20">
+      <h1 class="lead" id="results"> Captured results in <strong class="text-danger">({{ time }}ms)</strong></h1>
+    </hgroup>
+    <h4 class="songs"><span>Song Details: </span>
+      <ul id="songs" style="display: inline-block"></ul>
+    </h4>
+
+    <section id='song_section' class="col-md-8">
+      <ul class="res clearfix">
+        {% for hit in hits %}
+        <li>
+          <h3 class="titleSong"><u>{{ hit._source.பாடல் }}</u></h3>
+          <ul class="meta-search">
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Album Title: {{ hit._source.படம் }}</span></li>
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Year: {{ hit._source.வருடம் }} </span></li>
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Composer: {{ hit._source.இசை }} </span></li>
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Lyricist: {{ hit._source.பாடலாசிரியர்}}</span></li>
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Singers: {{ hit._source.பாடகர்}}</span></li>           
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Metaphor: {{ hit._source.விளக்கம் }}</span></li>
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Source Domain: {{ hit._source.உவமானம்}}</span></li>
+            <li><i class="glyphicon glyphicon-tags"></i> <span>Target Domain: {{ hit._source.உவமேயம்}}</span></li>
+            <li><i class="glyphicon glyphicon-tags"></i> <span style="text-align: justify;">Lyrics: {{ hit._source.வரி}}</span></li>
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  <script src="../static/js/extention/choices.js"></script>
+  <script>
+    const customSelects = document.querySelectorAll("select");
+    const deleteBtn = document.getElementById('delete')
+    const choices = new Choices('select',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+        removeItemButton: true,
+      });
+    for (let i = 0; i < customSelects.length; i++) {
+      customSelects[i].addEventListener('addItem', function (event) {
+        if (event.detail.value) {
+          let parent = this.parentNode.parentNode
+          parent.classList.add('valid')
+          parent.classList.remove('invalid')
+        }
+        else {
+          let parent = this.parentNode.parentNode
+          parent.classList.add('invalid')
+          parent.classList.remove('valid')
+        }
+      }, false);
+    }
+    deleteBtn.addEventListener("click", function (e) {
+      e.preventDefault()
+      const deleteAll = document.querySelectorAll('.choices__button')
+      for (let i = 0; i < deleteAll.length; i++) {
+        deleteAll[i].click();
+      }
+    });
+
+  </script>
+</body>
+
+</html>

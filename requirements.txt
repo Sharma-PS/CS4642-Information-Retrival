@@ -1,0 +1,4 @@
+flask
+python-dotenv
+elasticsearch
+elasticsearch_dsl
