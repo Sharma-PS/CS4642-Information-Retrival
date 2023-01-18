@@ -1,3 +1,4 @@
+import codecs
 import os
 import json
 from dotenv import load_dotenv
@@ -12,6 +13,23 @@ INDEX = os.getenv('ELASTCSEARCH_INDEX')
 def createIndex():
     # Create an index
     res = client.indices.create(index=INDEX)
+
+     # Read mappings from a JSON file
+    with codecs.open('analyzers/mapping_file.json', 'r', encoding="utf-8") as file:
+        mappings = json.load(file)
+    
+    # Read a settings from a JSON file
+    with codecs.open('analyzers/settings.json', 'r', encoding="utf-8") as settings_file:
+        settings = settings_file.read()
+
+    # Add settings to the index
+    client.indices.close(index=INDEX)
+    client.indices.put_settings(index=INDEX, body=settings, pretty=True)
+    client.indices.open(index=INDEX)
+
+    # Add mappings to the index
+    client.indices.put_mapping(index=INDEX, body=mappings, pretty=True)
+    
     print(res)
 
 def read_all_songs():

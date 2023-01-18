@@ -30,7 +30,7 @@ def advanced_search(query, year, yearmust, movie, moviemust, composer, composerm
     should = []
     must = []
     
-    should.append({"query_string": { "query": query }})
+    should.append({"query_string": { "query": query, "analyzer": "inflections" }})
 
     if year != "" and yearmust:
         must.append({ "match": { "வருடம்": year } })
@@ -109,7 +109,7 @@ def get_unique_values():
             },
             "movie":{
                 "terms":{
-                    "field" : "படம்.keyword",                
+                    "field" : "படம்",                
                     "size" : 100,
                     "order" : {
                         "_key" : "asc"
@@ -118,7 +118,7 @@ def get_unique_values():
             },    
             "composer":{
                 "terms":{
-                    "field" : "இசை.keyword",
+                    "field" : "இசை",
                     "order" : {
                         "_key" : "asc"
                     },
@@ -127,7 +127,7 @@ def get_unique_values():
             },
             "lyricist":{
                 "terms":{
-                    "field" : "பாடலாசிரியர்.keyword",                
+                    "field" : "பாடலாசிரியர்",                
                     "size" : 100,
                     "order" : {
                         "_key" : "asc"
@@ -136,7 +136,7 @@ def get_unique_values():
             },
             "singer":{
                 "terms":{
-                    "field" : "பாடகர்.keyword",                
+                    "field" : "பாடகர்",                
                     "size" : 100,
                     "order" : {
                         "_key" : "asc"

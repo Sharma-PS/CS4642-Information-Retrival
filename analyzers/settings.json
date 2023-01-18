@@ -1,0 +1,42 @@
+{
+    "index": {
+        "analysis": {
+            "analyzer": {
+                "plain": {
+                    "filter": [],
+                    "tokenizer": "standard"
+                },
+                "tamil_custom_analyzer": {
+                    "type": "custom",
+                    "tokenizer": "standard",
+                    "filter": [
+                        "custom_stopper",
+                        "custom_stemmer",
+                        "custom_synonyms"
+                    ]
+                },
+                "inflections": {
+                    "filter": [
+                        "custom_stemmer"
+                    ],
+                    "tokenizer": "standard"
+                }
+            },
+            "filter": {
+                "custom_stopper": {
+                    "type": "stop",
+                    "stopwords_path": "analyzers/stoppingwords.txt"
+                },
+                "custom_stemmer": {
+                    "type": "stemmer_override",
+                    "rules_path": "analyzers/stemmer.txt"
+                },
+                "custom_synonyms": {
+                    "type": "synonym",
+                    "lenient": true,
+                    "synonyms_path": "analyzers/synonyms.txt"
+                }
+            }
+        }
+    }
+}

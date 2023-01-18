@@ -1,0 +1,67 @@
+{
+    "properties": {
+        "பாடல்": {
+            "type": "text",
+            "analyzer": "plain",
+            "fields": {
+                "inflections": {
+                    "type": "text",
+                    "analyzer": "inflections"
+                },
+                "custom": {
+                    "type": "text",
+                    "analyzer": "tamil_custom_analyzer"
+                }
+            }
+        },
+        "வரி": {
+            "type": "text",
+            "analyzer": "plain",
+            "fields": {
+                "inflections": {
+                    "type": "text",
+                    "analyzer": "inflections"
+                },
+                "custom": {
+                    "type": "text",
+                    "analyzer": "tamil_custom_analyzer"
+                }
+            }
+        },
+        "வருடம்": {
+            "type": "integer"
+        },
+        "படம்": {
+            "type": "keyword"
+        },
+        "உவமானம்": {
+            "type": "text"
+        },
+        "உவமேயம்": {
+            "type": "text"
+        },
+        "இசை": {
+            "type": "keyword"
+        },
+        "பாடலாசிரியர்": {
+            "type": "keyword"
+        },
+        "பாடகர்": {
+            "type": "keyword"
+        },
+        "விளக்கம்": {
+            "type": "text",
+            "analyzer": "plain",
+            "fields": {
+                "inflections": {
+                    "type": "text",
+                    "analyzer": "inflections"
+                },
+                "custom": {
+                    "type": "text",
+                    "analyzer": "tamil_custom_analyzer"
+                }
+            }
+        }
+    }
+}

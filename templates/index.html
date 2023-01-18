@@ -35,7 +35,7 @@
                 <select data-trigger="" name="year">
                   <option placeholder="" value="">வருடம்</option>
                   {% for val in details.years %}
-                  <option value={{val}}>{{val}}</option>              
+                  <option value="{{val}}">{{val}}</option>              
                   {% endfor %}
                 </select>               
               </div>                   
@@ -47,7 +47,7 @@
                 <select data-trigger="" name="movie">
                   <option placeholder="" value="">படம்</option>
                   {% for val in details.movies %}
-                  <option value={{val}}>{{val}}</option>              
+                  <option value="{{val}}">{{val}}</option>              
                   {% endfor %}
                 </select>
               </div>
@@ -59,7 +59,7 @@
                 <select data-trigger="" name="composer">
                   <option placeholder="" value="">இசை</option>
                   {% for val in details.composers %}
-                  <option value={{val}}>{{val}}</option>              
+                  <option value="{{val}}">{{val}}</option>              
                   {% endfor %}
                 </select>
               </div>
@@ -73,7 +73,7 @@
                 <select data-trigger="" name="lyricist">
                   <option placeholder="" value="">பாடலாசிரியர்</option>
                   {% for val in details.lyricists %}
-                  <option value={{val}}>{{val}}</option>              
+                  <option value="{{val}}">{{val}}</option>              
                   {% endfor %}
                 </select>
               </div>
@@ -85,7 +85,7 @@
                 <select data-trigger="" name="singer">
                   <option placeholder="" value="">பாடகர்</option>
                   {% for val in details.singers %}
-                  <option value={{val}}>{{val}}</option>              
+                  <option value="{{val}}">{{val}}</option>              
                   {% endfor %}
                 </select>
               </div>
@@ -130,15 +130,15 @@
         <li>
           <h3 class="titleSong"><u>{{ hit._source.பாடல் }}</u></h3>
           <ul class="meta-search">
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Album Title: {{ hit._source.படம் }}</span></li>
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Year: {{ hit._source.வருடம் }} </span></li>
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Composer: {{ hit._source.இசை }} </span></li>
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Lyricist: {{ hit._source.பாடலாசிரியர்}}</span></li>
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Singers: {{ hit._source.பாடகர்}}</span></li>           
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Metaphor: {{ hit._source.விளக்கம் }}</span></li>
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Source Domain: {{ hit._source.உவமானம்}}</span></li>
-            <li><i class="glyphicon glyphicon-tags"></i> <span>Target Domain: {{ hit._source.உவமேயம்}}</span></li>
-            <li><i class="glyphicon glyphicon-tags"></i> <span style="text-align: justify;">Lyrics: {{ hit._source.வரி}}</span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Album Title:</b> {{ hit._source.படம் }}</span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Year:</b> {{ hit._source.வருடம் }} </span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Composer:</b> {{ hit._source.இசை }} </span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Lyricist: </b>{{ hit._source.பாடலாசிரியர்}}</span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Singers:</b> {{ hit._source.பாடகர்}}</span></li>           
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Metaphor:</b> {{ hit._source.விளக்கம் }}</span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Source Domain:</b> {{ hit._source.உவமானம்}}</span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span><b class="litags">Target Domain:</b> {{ hit._source.உவமேயம்}}</span></li>
+            <li><i class="glyphicon glyphicon-tags "></i> <span style="text-align: justify;"><b class="litags">Lyrics:</b> {{ hit._source.வரி}}</span></li>
           </ul>
         </li>
         {% endfor %}
